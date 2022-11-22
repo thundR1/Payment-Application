@@ -72,3 +72,8 @@ void appStart(void) {
 		break;
 	}
 }
+
+int main(void) {
+	appStart();
+	return 0;
+}
