@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
-#include "app.h"
+#include "./app.h"
 
 
 void appStart(void) {

@@ -1,7 +1,7 @@
 #ifndef SERVER_H
 #define SERVER_H
-#include "card.h"
-#include "terminal.h"
+#include "../card/card.h"
+#include "../terminal/terminal.h"
 typedef unsigned int uint32_t;
 
 typedef enum EN_transState_t

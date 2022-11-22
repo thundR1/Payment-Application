@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "server.h"
+#include "./server.h"
 unsigned char test_mode3 = 0;
 
 ST_accountsDB_t accountsDB[255] = { {2000.0f, RUNNING, "8989374615436851"} , {100000.0f, BLOCKED, "5807007076043875"} ,

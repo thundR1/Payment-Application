@@ -1,6 +1,6 @@
 #ifndef TERMINAL_H
 #define TERMINAL_H
-#include "card.h"
+#include "../card/card.h"
 
 typedef unsigned char uint8_t;
 

@@ -3,7 +3,7 @@
 #include <string.h>
 #include <assert.h>
 #include <ctype.h>
-#include "terminal.h"
+#include "./terminal.h"
 unsigned char test_mode2 = 0;
 //----------------------------------------------------------------
 int is_wrong_format(char* s) {

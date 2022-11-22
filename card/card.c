@@ -2,7 +2,7 @@
 #include <string.h>
 #include <assert.h>
 #include <ctype.h>
-#include "card.h"
+#include "./card.h"
 unsigned char test_mode1 = 0;
 //-----------------------------------------------------------------------------
 EN_cardError_t getCardHolderName(ST_cardData_t* cardData) {
