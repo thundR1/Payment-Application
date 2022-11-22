@@ -5,6 +5,11 @@
 #include "./card.h"
 unsigned char test_mode1 = 0;
 //-----------------------------------------------------------------------------
+int contain_numbers(char* s) {
+	size_t len = strlen(s);
+	for (size_t i = 0; i < len; i++) if (s[i] >= '0' && s[i] <= '9') return 1;
+	return 0;
+}
 EN_cardError_t getCardHolderName(ST_cardData_t* cardData) {
 	size_t len = strlen(cardData->cardHolderName);
 	if (!test_mode1) {
@@ -16,7 +21,7 @@ EN_cardError_t getCardHolderName(ST_cardData_t* cardData) {
 			len--;
 		}
 	}
-	return (cardData->cardHolderName == NULL || len < 20 || len > 24 ? WRONG_NAME : CARD_OK);
+	return (cardData->cardHolderName == NULL || len < 20 || len > 24 || contain_numbers(cardData->cardHolderName) ? WRONG_NAME : CARD_OK);
 }
 void getCardHolderNameTest(void) {
 	test_mode1 = 1;
@@ -31,8 +36,15 @@ void getCardHolderNameTest(void) {
 	//strcpy(test1.cardHolderName, "more_than_24_chars_string"); // The Buffer overflows since strlen is > 24
 	printf("Test Case 3:\nInput Data: more_than_24_chars_string\nExpected Result: %d\nActual Result: %d\n\n", WRONG_NAME, WRONG_NAME);
 
-	strcpy(test1.cardHolderName, "23_length_string_passed");
+	strcpy(test1.cardHolderName, "in_range_string_string");
 	printf("Test Case 4:\nInput Data: 23_length_string_passed\nExpected Result: %d\nActual Result: %d\n\n", CARD_OK, getCardHolderName(&test1));
+
+	strcpy(test1.cardHolderName, "123456789012345678901"); // INVALID, Name can't contain numbers
+	printf("Test Case 5:\nInput Data: 123456789012345678901\nExpected Result: %d\nActual Result: %d\n\n", WRONG_NAME, getCardHolderName(&test1));
+
+	strcpy(test1.cardHolderName, "asdfghjklqwertyuiopz1"); // INVALID, Name can't contain numbers
+	printf("Test Case 6:\nInput Data: asdfghjklqwertyuiopz1\nExpected Result: %d\nActual Result: %d\n\n", WRONG_NAME, getCardHolderName(&test1));
+	
 
 	test_mode1 = 0;
 }
@@ -142,6 +154,12 @@ void getCardPANTest(void) {
 	
 	strcpy(test3.primaryAccountNumber, "0123456789012345"); // VALID 16 char numric values
 	printf("Test Case 4:\nInput Data: 0123456789012345\nExpected Result: %d\nActual Result: %d\n\n", CARD_OK, getCardPAN(&test3));
+
+	strcpy(test3.primaryAccountNumber, "asdfghjklqwertyu"); // NOT VALID, CONTAINS CHARS
+	printf("Test Case 6:\nInput Data: asdfghjklqwertyu\nExpected Result: %d\nActual Result: %d\n\n", WRONG_PAN, getCardPAN(&test3));
+
+	strcpy(test3.primaryAccountNumber, "1234567890123456aa"); // NOT VALID, CONTAINS CHARS
+	printf("Test Case 7:\nInput Data: 1234567890123456aa\nExpected Result: %d\nActual Result: %d\n\n", WRONG_PAN, getCardPAN(&test3));
 
 	test_mode1 = 0;
 }

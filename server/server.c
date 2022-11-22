@@ -160,9 +160,23 @@ void listSavedTransactionsTest(void) {
 	printf("Tester Name: Youssef Elsayed Abdelkader\nFunction Name: listSavedTransactions\n\n");
 	ST_cardData_t c_data = { "Youssef", "8989374615436851", "05/25" };
 	ST_terminalData_t t_data = { 10.8f, 20.3f, "04/11/2020" };
-	ST_transaction_t trans_t = { c_data, t_data, APPROVED, trans_sequence };
-
-	saveTransaction(&trans_t);
+	ST_transaction_t trans_t1 = { c_data, t_data, APPROVED, trans_sequence };
+	saveTransaction(&trans_t1);
+	
+	strcpy(c_data.cardHolderName, "joe");
+	strcpy(c_data.primaryAccountNumber, "9127465236546542");
+	strcpy(c_data.cardExpirationDate, "11/27");
+	strcpy(t_data.transactionDate, "24/05/2019");
+	ST_transaction_t trans_t2 = { c_data, t_data, APPROVED, trans_sequence };
+	saveTransaction(&trans_t2);
+	
+	strcpy(c_data.cardHolderName, "omar");
+	strcpy(c_data.primaryAccountNumber, "1526327951062308");
+	strcpy(c_data.cardExpirationDate, "01/23");
+	strcpy(t_data.transactionDate, "09/04/2022");
+	ST_transaction_t trans_t3 = { c_data, t_data, APPROVED, trans_sequence };
+	saveTransaction(&trans_t3);
+	
 	listSavedTransactions();
 
 	test_mode3 = 0;
