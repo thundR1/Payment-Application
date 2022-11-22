@@ -163,8 +163,3 @@ void getCardPANTest(void) {
 	test_mode1 = 0;
 }
 //-----------------------------------------------------------------------------
-
-int main(void) {
-	getCardPANTest();
-	return 0;
-}
